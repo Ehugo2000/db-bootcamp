@@ -9,6 +9,7 @@ app.listen(8000);
 //------------- Database ---------------------
 const { PromisedDatabase } = require("promised-sqlite3");
 const db = new PromisedDatabase();
+db.open("database.db");
 
 //----------- request handlers----------------
 app.get("/", async (req, res) => {
