@@ -20,8 +20,9 @@ async function insertTables() {
         body TEXT NOT NULL,
         answered INTEGER NOT NULL,
         department_id INTEGER NOT NULL,
+        PRIMARY KEY ('message_id' AUTOINCREMENT),
         FOREIGN KEY('department_id')
-          REFERENCES deparments (department_id)
+          REFERENCES departments (department_id)
       );
       `
     );
