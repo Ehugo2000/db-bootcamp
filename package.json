@@ -9,6 +9,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "setup": "node setup.js",
+    "seed": "node seed.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
