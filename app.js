@@ -9,7 +9,6 @@ app.listen(8000);
 //------------- Database ---------------------
 const { PromisedDatabase } = require("promised-sqlite3");
 const db = new PromisedDatabase();
-db.open("database.db");
 
 //----------- request handlers----------------
 app.get("/", async (req, res) => {
@@ -22,15 +21,17 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/ask", async (req, res) => {
+  db.open("database.db");
   console.log(req.body);
   const { email, title, department, question } = req.body;
   console.log(email, title, Number(department), question);
   try {
-    const response = await db.insert(
+    const response = await db.run(
       `INSERT INTO messages 
       (email, title, body, department_id, answered) VALUES 
-      (${email}, ${title}, ${question},${department}, '0');`
+      ('${email}', '${title}', '${question}',${department}, 0);`
     );
+    db.close();
     res.redirect("/success");
   } catch (error) {
     console.log(error);
